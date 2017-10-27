@@ -9,6 +9,7 @@
  * Adds custom classes to the array of body classes.
  *
  * @param array $classes Classes for the body element.
+ *
  * @return array
  */
 function stoma_body_classes( $classes ) {
@@ -19,6 +20,7 @@ function stoma_body_classes( $classes ) {
 
 	return $classes;
 }
+
 add_filter( 'body_class', 'stoma_body_classes' );
 
 /**
@@ -29,4 +31,5 @@ function stoma_pingback_header() {
 		echo '<link rel="pingback" href="', esc_url( get_bloginfo( 'pingback_url' ) ), '">';
 	}
 }
+
 add_action( 'wp_head', 'stoma_pingback_header' );
