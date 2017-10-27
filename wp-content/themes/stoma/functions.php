@@ -44,7 +44,8 @@ if ( ! function_exists( 'stoma_setup' ) ) :
 
 		// This theme uses wp_nav_menu() in one location.
 		register_nav_menus( array(
-			'menu-1' => esc_html__( 'Primary', 'stoma' ),
+			'menu-1' => esc_html__( 'Верхнее меню', 'stoma' ),
+			'in_footer' => 'Меню в подвале'
 		) );
 
 		/*
@@ -79,6 +80,9 @@ if ( ! function_exists( 'stoma_setup' ) ) :
 			'flex-width'  => true,
 			'flex-height' => true,
 		) );
+
+		add_filter( 'show_admin_bar', '__return_false' );
+		remove_action('welcome_panel', 'wp_welcome_panel');
 	}
 endif;
 add_action( 'after_setup_theme', 'stoma_setup' );
@@ -93,6 +97,7 @@ add_action( 'after_setup_theme', 'stoma_setup' );
 function stoma_content_width() {
 	$GLOBALS['content_width'] = apply_filters( 'stoma_content_width', 640 );
 }
+
 add_action( 'after_setup_theme', 'stoma_content_width', 0 );
 
 /**
@@ -111,6 +116,7 @@ function stoma_widgets_init() {
 		'after_title'   => '</h2>',
 	) );
 }
+
 add_action( 'widgets_init', 'stoma_widgets_init' );
 
 /**
@@ -127,6 +133,7 @@ function stoma_scripts() {
 		wp_enqueue_script( 'comment-reply' );
 	}
 }
+
 add_action( 'wp_enqueue_scripts', 'stoma_scripts' );
 
 /**
