@@ -1,0 +1,51 @@
+.site-header {
+  background: #343434;
+}
+
+.site-wrap {
+  display: flex;
+  flex-direction: row;
+  width: 1100px;
+  margin: 0 auto;
+}
+
+.custom-logo-link {
+  width: 121px;
+  height: 78px;
+}
+
+.site-branding {
+  padding: 20px 0 19px 49px;
+}
+
+.menu {
+  display: flex !important;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.menu-item a {
+  color: white;
+}
+
+.main-navigation {
+  padding-top: 48px;
+  padding-bottom: 48px;
+}
+
+.sub-menu {
+  background: #343434;
+  border: solid 1px white;
+}
+
+.menu-item-has-children > a:after {
+  content: "\f078";
+  font-family: 'FontAwesome', 'Arial', sans-serif;
+  color: white;
+  padding-left: 5px;
+  display: inline-block;
+}
+
+.menu-item-has-children ul li a {
+  margin: 10px;
+}
