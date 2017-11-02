@@ -26,6 +26,10 @@
 
 .menu-item a {
   color: white;
+  transition: color .5s ease;
+  &:hover {
+    color: #99CC32;
+  }
 }
 
 .main-navigation {
@@ -44,6 +48,11 @@
   color: white;
   padding-left: 5px;
   display: inline-block;
+  transition: color .5s ease;
+}
+
+.menu-item-has-children:hover > a:after {
+  color: #99CC32;
 }
 
 .menu-item-has-children ul li a {

@@ -93,7 +93,13 @@ a:hover {
 }
 
 .menu-item a {
+	-webkit-transition: color .5s ease;
+	transition: color .5s ease;
 	color: white;
+}
+
+.menu-item a:hover {
+	color: #99cc32;
 }
 
 .main-navigation {
@@ -111,10 +117,36 @@ a:hover {
 	display: inline-block;
 	padding-left: 5px;
 	content: '\f078';
+	-webkit-transition: color .5s ease;
+	transition: color .5s ease;
 	color: white;
+}
+
+.menu-item-has-children:hover > a:after {
+	color: #99cc32;
 }
 
 .menu-item-has-children ul li a {
 	margin: 10px;
+}
+
+.promo {
+	position: relative;
+	width: 100%;
+	height: 583px;
+	margin: 0;
+}
+
+.promo__img {
+	width: 100%;
+	height: 100%;
+	-o-object-fit: cover;
+	object-fit: cover;
+}
+
+.promo__wrap {
+	position: absolute;
+	top: 0;
+	left: 0;
 }
 

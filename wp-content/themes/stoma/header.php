@@ -26,7 +26,18 @@
     <header id="masthead" class="site-header">
         <div class="site-wrap">
             <div class="site-branding">
-				<?php the_custom_logo(); ?>
+				<?php $logo = get_custom_logo();
+				if ( $logo !== "" ) {
+					echo $logo;
+				} else { ?>
+                    <a href="<?php echo home_url(); ?>" class="custom-logo-link" rel="home" itemprop="url">
+                        <img width="649"
+                             height="418"
+                             src="<?php echo get_template_directory_uri(); ?>/assets/img/header/logo.png"
+                             class="custom-logo"
+                             alt="Гермес-Дент">
+                    </a>
+				<?php }; ?>
             </div>
 
             <nav id="site-navigation" class="main-navigation">
