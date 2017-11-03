@@ -134,8 +134,8 @@ function stoma_scripts() {
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
 	}
-	wp_enqueue_script('jquery');
-	wp_enqueue_script( 'stoma-main', get_template_directory_uri() . '/assets/js/main.min.js', array('jquery'), '20171028', true );
+	wp_enqueue_script( 'jquery' );
+	wp_enqueue_script( 'stoma-main', get_template_directory_uri() . '/assets/js/main.min.js', array( 'jquery' ), '20171028', true );
 }
 
 add_action( 'wp_enqueue_scripts', 'stoma_scripts' );
@@ -166,4 +166,137 @@ require get_template_directory() . '/inc/customizer.php';
 if ( defined( 'JETPACK__VERSION' ) ) {
 	require get_template_directory() . '/inc/jetpack.php';
 }
+
+class Stoma {
+	private $stoma_options;
+
+	public function __construct() {
+		add_action( 'admin_menu', array( $this, 'stoma_add_plugin_page' ) );
+		add_action( 'admin_init', array( $this, 'stoma_page_init' ) );
+	}
+
+	public function stoma_add_plugin_page() {
+		add_menu_page(
+			'Stoma', // page_title
+			'Stoma', // menu_title
+			'manage_options', // capability
+			'stoma', // menu_slug
+			array( $this, 'stoma_create_admin_page' ), // function
+			'dashicons-admin-generic', // icon_url
+			100 // position
+		);
+	}
+
+	public function stoma_create_admin_page() {
+		$this->stoma_options = get_option( 'stoma_option_name' ); ?>
+
+        <div class="wrap">
+            <h2>Тема "Стоматология"</h2>
+            <p></p>
+			<?php settings_errors(); ?>
+
+            <form method="post" action="options.php">
+				<?php
+				settings_fields( 'stoma_option_group' );
+				do_settings_sections( 'stoma-admin' );
+				submit_button();
+				?>
+            </form>
+        </div>
+	<?php }
+
+	public function stoma_page_init() {
+		register_setting(
+			'stoma_option_group', // option_group
+			'stoma_option_name', // option_name
+			array( $this, 'stoma_sanitize' ) // sanitize_callback
+		);
+
+		add_settings_section(
+			'stoma_setting_section', // id
+			'Настройки', // title
+			array( $this, 'stoma_section_info' ), // callback
+			'stoma-admin' // page
+		);
+
+		add_settings_field(
+			'name_0', // id
+			'Наименование', // title
+			array( $this, 'name_0_callback' ), // callback
+			'stoma-admin', // page
+			'stoma_setting_section' // section
+		);
+
+		add_settings_field(
+			'address_1', // id
+			'Адрес', // title
+			array( $this, 'address_1_callback' ), // callback
+			'stoma-admin', // page
+			'stoma_setting_section' // section
+		);
+
+		add_settings_field(
+			'phone_2', // id
+			'Телефон', // title
+			array( $this, 'phone_2_callback' ), // callback
+			'stoma-admin', // page
+			'stoma_setting_section' // section
+		);
+	}
+
+	public function stoma_sanitize( $input ) {
+		$sanitary_values = array();
+		if ( isset( $input['name_0'] ) ) {
+			$sanitary_values['name_0'] = sanitize_text_field( $input['name_0'] );
+		}
+
+		if ( isset( $input['address_1'] ) ) {
+			$sanitary_values['address_1'] = sanitize_text_field( $input['address_1'] );
+		}
+
+		if ( isset( $input['phone_2'] ) ) {
+			$sanitary_values['phone_2'] = sanitize_text_field( $input['phone_2'] );
+		}
+
+		return $sanitary_values;
+	}
+
+	public function stoma_section_info() {
+
+	}
+
+	public function name_0_callback() {
+		printf(
+			'<input class="regular-text" type="text" name="stoma_option_name[name_0]" id="name_0" value="%s">',
+			isset( $this->stoma_options['name_0'] ) ? esc_attr( $this->stoma_options['name_0'] ) : ''
+		);
+	}
+
+	public function address_1_callback() {
+		printf(
+			'<input class="regular-text" type="text" name="stoma_option_name[address_1]" id="address_1" value="%s">',
+			isset( $this->stoma_options['address_1'] ) ? esc_attr( $this->stoma_options['address_1'] ) : ''
+		);
+	}
+
+	public function phone_2_callback() {
+		printf(
+			'<input class="regular-text" type="text" name="stoma_option_name[phone_2]" id="phone_2" value="%s">',
+			isset( $this->stoma_options['phone_2'] ) ? esc_attr( $this->stoma_options['phone_2'] ) : ''
+		);
+	}
+
+}
+
+if ( is_admin() ) {
+	$stoma = new Stoma();
+}
+
+/*
+ * Retrieve this value with:
+ * $stoma_options = get_option( 'stoma_option_name' ); // Array of All Options
+ * $name_0 = $stoma_options['name_0']; // Name
+ * $address_1 = $stoma_options['address_1']; // Address
+ * $phone_2 = $stoma_options['phone_2']; // Phone
+ */
 

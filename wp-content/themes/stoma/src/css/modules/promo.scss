@@ -14,5 +14,60 @@
 .promo__wrap {
   position: absolute;
   top: 0;
+  display: flex;
+  flex-direction: row;
+  width: 1100px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding-top: 10px;
+  padding-bottom: 10px;
+  justify-content: space-around;
+}
+
+.promo__box {
+  position: absolute;
+  top: 0;
   left: 0;
+  height: 67px;
+  width: 100%;
+  background-color: white;
+  opacity: 0.7;
+  box-shadow: 0 5px 8px -2px #858785;
+}
+
+.promo__marker {
+  font-size: 21px;
+  padding-right: 19px;
+}
+
+.promo__marker--green {
+  color: #99CC32;
+}
+
+.promo__phone {
+  color: #CA1D1D;
+}
+
+.promo__block {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.promo__text {
+  line-height: 24px;
+  font-size: 16px;
+  letter-spacing: 0.17px;
+}
+
+.promo__text--phone {
+  width: 120px;
+}
+
+.promo__text--address {
+  width: 380px;
+}
+
+.promo__text--ooo {
+  width: 305px;
 }
