@@ -95,6 +95,7 @@ a:hover {
 .menu-item a {
 	-webkit-transition: color .5s ease;
 	transition: color .5s ease;
+	letter-spacing: .165517px;
 	color: white;
 }
 
@@ -130,6 +131,10 @@ a:hover {
 	margin: 10px;
 }
 
+.site-footer {
+	background: #343434;
+}
+
 .promo {
 	position: relative;
 	width: 100%;
@@ -162,6 +167,9 @@ a:hover {
 	-ms-flex-direction: row;
 	-ms-flex-pack: distribute;
 	justify-content: space-around;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
 }
 
 .promo__box {

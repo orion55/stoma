@@ -14,17 +14,31 @@
 	</div><!-- #content -->
 
 	<footer id="colophon" class="site-footer">
-		<div class="site-info">
-			<a href="<?php echo esc_url( __( 'https://wordpress.org/', 'stoma' ) ); ?>"><?php
-				/* translators: %s: CMS name, i.e. WordPress. */
-				printf( esc_html__( 'Proudly powered by %s', 'stoma' ), 'WordPress' );
-			?></a>
-			<span class="sep"> | </span>
-			<?php
-				/* translators: 1: Theme name, 2: Theme author. */
-				printf( esc_html__( 'Theme: %1$s by %2$s.', 'stoma' ), 'stoma', '<a href="http://underscores.me/">Underscores.me</a>' );
-			?>
-		</div><!-- .site-info -->
+        <div class="site-wrap">
+            <div class="site-branding">
+				<?php $logo = get_custom_logo();
+				if ( $logo !== "" ) {
+					echo $logo;
+				} else { ?>
+                    <a href="<?php echo home_url(); ?>" class="custom-logo-link" rel="home" itemprop="url">
+                        <img width="649"
+                             height="418"
+                             src="<?php echo get_template_directory_uri(); ?>/assets/img/header/logo.png"
+                             class="custom-logo"
+                             alt="Гермес-Дент">
+                    </a>
+				<?php }; ?>
+            </div>
+
+            <nav id="site-navigation" class="main-navigation">
+				<?php
+				wp_nav_menu( array(
+					'theme_location' => 'in_footer',
+					'menu_id'        => 'footer-menu',
+				) );
+				?>
+            </nav>
+        </div>
 	</footer><!-- #colophon -->
 </div><!-- #page -->
 
