@@ -30,10 +30,8 @@
 				if ( $logo !== "" ) {
 					echo $logo;
 				} else { ?>
-                    <a href="<?php echo home_url(); ?>" class="custom-logo-link" rel="home" itemprop="url">
-                        <img width="649"
-                             height="418"
-                             src="<?php echo get_template_directory_uri(); ?>/assets/img/header/logo.png"
+                    <a href="<?php echo home_url(); ?>" class="custom-logo-link hvr-pop" rel="home" itemprop="url">
+                        <img src="<?php echo get_template_directory_uri(); ?>/assets/img/header/logo.png"
                              class="custom-logo"
                              alt="Гермес-Дент">
                     </a>

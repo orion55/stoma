@@ -1,7 +1,7 @@
 .promo {
   height: 583px;
   width: 100%;
-  margin: 0;
+  margin: 0 0 101px 0;
   position: relative;
 }
 
@@ -71,4 +71,78 @@
 
 .promo__text--ooo {
   width: 305px;
+}
+
+.promo__price {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.promo__holder {
+  position: absolute;
+  bottom: -51px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.promo__container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 316px;
+  height: 102px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  border-radius: 7px;
+}
+
+.promo__container--red {
+  background-color: #CA1D1D;
+  margin-right: 24px;
+}
+
+.promo__container--green {
+  background-color: #99CC32;
+}
+
+.promo__desc {
+  font-weight: bold;
+  font-size: 24px;
+  letter-spacing: 0.248276px;
+  text-transform: uppercase;
+  color: white;
+}
+
+.promo__pict {
+  padding-left: 24px;
+  padding-right: 32px;
+}
+
+.promo__price {
+  position: absolute;
+  top: 238px;
+  left: 49px;
+  border: 2px solid #99CC32;
+  box-sizing: border-box;
+  border-radius: 7px;
+  width: 451px;
+  height: 111px;
+  background-color: rgba(white, 0.6);
+  padding-top: 10px;
+  line-height: normal;
+}
+
+.promo__price--text {
+  font-size: 24px;
+  text-align: center;
+  letter-spacing: 0.310345px;
+}
+
+.promo__price--bold {
+  font-size: 42px;
+  opacity: 1;
+  text-align: center;
 }

@@ -23,6 +23,7 @@
     "gulp-sass-glob": "^1.0.8",
     "gulp-sourcemaps": "*",
     "gulp-uglify": "*",
+    "hover.css": "^2.2.1",
     "imagemin-pngquant": "^5.0.1"
   },
   "dependencies": {}
