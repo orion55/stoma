@@ -1,0 +1,44 @@
+.specialist {
+  padding-bottom: 50px;
+  position: relative;
+}
+
+.specialist__caption {
+  padding-right: 50px;
+  padding-left: 50px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.specialist__name {
+  font-weight: bold;
+  font-size: 20px;
+  text-align: center;
+  letter-spacing: 0.258621px;
+  padding-bottom: 7px;
+}
+
+.specialist__position {
+  font-weight: normal;
+  line-height: normal;
+  font-size: 18px;
+  text-align: center;
+  letter-spacing: 0.258621px;
+  color: #353535;
+}
+
+.specialist__foto {
+  width: 315px;
+  height: 380px;
+  margin: 0;
+  padding-bottom: 17px;
+}
+
+.specialist__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+}

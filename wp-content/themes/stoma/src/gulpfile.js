@@ -80,7 +80,7 @@ gulp.task('fonts', function () {
 });
 
 gulp.task('vendor', function () {
-    gulp.src(['./node_modules/font-awesome/css/font-awesome.css'])
+    gulp.src(['./node_modules/font-awesome/css/font-awesome.css', './node_modules/purecss/build/buttons.css'])
         .pipe(plumber({
             handleError: function (err) {
                 console.log(err);

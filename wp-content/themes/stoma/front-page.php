@@ -60,9 +60,7 @@
             </div>
         </div>
         <div class="services box">
-            <h2 class="services__head">Услуги</h2>
-            <div class="services__line services__line--left"></div>
-            <div class="services__line services__line--right"></div>
+            <h2 class="head">Услуги</h2>
             <div class="services__caption">
 				<?php
 				global $post;
@@ -70,7 +68,8 @@
 					'numberposts' => - 1,
 					'orderby'     => 'date',
 					'order'       => 'DESC',
-					'post_type'   => 'page'
+					'post_type'   => 'page',
+					'exclude'     => [ 5 ]
 				);
 				$myposts = get_posts( $args );
 				foreach ( $myposts as $post ) {
@@ -78,6 +77,71 @@
 					?>
                     <div class="services__item hvr-pop"><a href="<?php the_permalink(); ?>"
                                                            class="services__link"><?php the_title(); ?></a></div>
+					<?php
+				}
+				wp_reset_postdata();
+				?>
+            </div>
+        </div>
+        <div class="shares box box--red">
+            <h2 class="head">Акции</h2>
+            <div class="shares__caption">
+				<?php
+				global $post;
+				$args    = array(
+					'numberposts' => 3,
+					'orderby'     => 'date',
+					'order'       => 'DESC',
+					'post_type'   => 'share'
+				);
+				$myposts = get_posts( $args );
+				foreach ( $myposts as $post ) {
+					setup_postdata( $post );
+					?>
+                    <div class="shares__item hvr-push"><a href="<?php the_permalink(); ?>"
+                                                          class="shares__link"><?php the_content(); ?></a></div>
+					<?php
+				}
+				wp_reset_postdata();
+				?>
+            </div>
+            <div class="shares__block">
+                <a href="#" class="pure-button shares-button button-error">Больше акций <i class="fa fa-arrow-right"
+                                                                                           aria-hidden="true"></i></a>
+            </div>
+        </div>
+        <div class="about box">
+            <h2 class="head">О нас</h2>
+            <div class="about__caption">
+				<?php
+				$post_id = get_post( 5 );
+				echo $post_id->post_content;
+				?>
+            </div>
+        </div>
+        <div class="specialist box box--specialist">
+            <h2 class="head">Наши специалисты</h2>
+            <div class="specialist__caption">
+				<?php
+				global $post;
+				$args    = array(
+					'numberposts' => 3,
+					'orderby'     => 'title',
+					'order'       => 'ASC',
+					'post_type'   => 'specialist'
+				);
+				$myposts = get_posts( $args );
+				foreach ( $myposts as $post ) {
+					setup_postdata( $post );
+					?>
+                    <div class="specialist__item">
+						<?php $title = get_the_title(); ?>
+                        <div class="specialist__foto"><?php echo types_render_field( "spec-foto", array( "alt"   => $title,
+						                                                                                 "class" => "specialist__img"
+							) ); ?></div>
+                        <div class="specialist__name"><?php echo $title; ?></div>
+                        <div class="specialist__position"><?php the_content(); ?></div>
+                    </div>
 					<?php
 				}
 				wp_reset_postdata();

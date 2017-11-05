@@ -24,7 +24,8 @@
     "gulp-sourcemaps": "*",
     "gulp-uglify": "*",
     "hover.css": "^2.2.1",
-    "imagemin-pngquant": "^5.0.1"
+    "imagemin-pngquant": "^5.0.1",
+    "purecss": "^1.0.0"
   },
   "dependencies": {}
 }

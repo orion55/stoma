@@ -1,0 +1,27 @@
+.about {
+  padding-bottom: 50px;
+  position: relative;
+}
+
+.about__caption {
+  padding-right: 50px;
+  padding-left: 50px;
+}
+
+.about a {
+  font-weight: bold;
+  line-height: normal;
+  font-size: 18px;
+  letter-spacing: 0.3px;
+  text-decoration-line: underline;
+  color: #89C526;
+  transition: color .7s ease;
+  &:hover {
+    text-decoration-line: none;
+    color: lighten(#89C526, 20%);
+  }
+}
+
+.about h2 {
+  padding-bottom: 10px;
+}
