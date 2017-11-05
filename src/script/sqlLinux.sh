@@ -1,6 +1,6 @@
-DIR="/home/black-lady.ru"
-USER=blacklady
-MYSQLPASS=1oep1yxHyalN
+DIR="/home/stoma.infoblog72.ru"
+USER=stoma
+MYSQLPASS=6B0GVURRXm1g
 DATABASE=$USER
 
 clear
