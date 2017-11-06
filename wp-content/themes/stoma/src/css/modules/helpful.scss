@@ -1,0 +1,48 @@
+.helpful {
+  padding-bottom: 20px;
+  position: relative;
+}
+
+.helpful__caption {
+  padding-right: 50px;
+  padding-left: 50px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.helpful__item {
+  background: white;
+  border: 2px solid #CA1D1D;
+  box-sizing: border-box;
+  border-radius: 10px;
+  width: 48%;
+  text-align: center;
+  margin-bottom: 30px;
+  //margin-right: 25px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  cursor: pointer;
+  &:nth-child(2n) {
+    margin-right: 0;
+  }
+  &:hover .helpful__link {
+    color: #CA1D1D;
+  }
+}
+
+.helpful__link {
+  font-size: 18px;
+  letter-spacing: 0.33px;
+  color: black;
+  transition: color .8s ease;
+  &:visited {
+    color: darken(#CA1D1D, 20%);
+  }
+}
+
+.helpful__block {
+  text-align: center;
+  padding-bottom: 20px;
+}

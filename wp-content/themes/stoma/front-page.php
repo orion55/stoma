@@ -106,8 +106,9 @@
 				?>
             </div>
             <div class="shares__block">
-                <a href="#" class="pure-button shares-button button-error">Больше акций <i class="fa fa-arrow-right"
-                                                                                           aria-hidden="true"></i></a>
+                <a href="<?php echo get_post_type_archive_link( 'share' ); ?>"
+                   class="pure-button shares-button button-error">Больше акций <i class="fa fa-arrow-right"
+                                                                                  aria-hidden="true"></i></a>
             </div>
         </div>
         <div class="about box">
@@ -136,11 +137,71 @@
 					?>
                     <div class="specialist__item">
 						<?php $title = get_the_title(); ?>
-                        <div class="specialist__foto"><?php echo types_render_field( "spec-foto", array( "alt"   => $title,
-						                                                                                 "class" => "specialist__img"
+                        <div class="specialist__foto"><?php echo types_render_field( "spec-foto", array(
+								"alt"   => $title,
+								"class" => "specialist__img"
 							) ); ?></div>
                         <div class="specialist__name"><?php echo $title; ?></div>
                         <div class="specialist__position"><?php the_content(); ?></div>
+                    </div>
+					<?php
+				}
+				wp_reset_postdata();
+				?>
+            </div>
+        </div>
+        <div class="helpful box box--helpful">
+            <h2 class="head">Полезные статьи</h2>
+            <div class="helpful__caption">
+				<?php
+				global $post;
+				$args    = array(
+					'numberposts' => 8,
+					'orderby'     => 'title',
+					'order'       => 'ASC',
+					'post_type'   => 'post',
+				);
+				$myposts = get_posts( $args );
+				foreach ( $myposts as $post ) {
+					setup_postdata( $post );
+					$title = get_the_title();
+					if ( ! empty( $title ) ) {
+						?>
+                        <div class="helpful__item hvr-pop"><a href="<?php the_permalink(); ?>"
+                                                              class="helpful__link"><?php the_title(); ?></a></div>
+						<?php
+					}
+				}
+				wp_reset_postdata();
+				?>
+            </div>
+            <div class="helpful__block">
+                <a href="<?php echo get_post_type_archive_link( 'post' ); ?>"
+                   class="pure-button shares-button button-error">Больше статей <i class="fa fa-arrow-right"
+                                                                                   aria-hidden="true"></i></a>
+            </div>
+        </div>
+        <div class="review box">
+            <h2 class="head">Отзывы</h2>
+            <div class="review__caption">
+				<?php
+				global $post;
+				$args    = array(
+					'numberposts' => 3,
+					'orderby'     => 'date-review',
+					'order'       => 'ASC',
+					'post_type'   => 'review'
+				);
+				$myposts = get_posts( $args );
+				foreach ( $myposts as $post ) {
+					setup_postdata( $post );
+					?>
+                    <div class="review__item">
+                        <div class="review__title">
+							<?php the_title();
+							echo " (" . types_render_field( 'date-review' ) . ")" ?>
+                        </div>
+                        <div class="review__content"><?php the_content(); ?></div>
                     </div>
 					<?php
 				}

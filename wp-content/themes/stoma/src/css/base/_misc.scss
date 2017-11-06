@@ -138,6 +138,17 @@
   }
 }
 
+.box--helpful {
+  &:after {
+    width: 280px;
+    background-color: #CA1D1D;
+  }
+  &:before {
+    width: 280px;
+    background-color: #CA1D1D;
+  }
+}
+
 .box h2.head {
   text-transform: uppercase;
   font-weight: 300;

@@ -104,7 +104,7 @@ gulp.task('watch', function () {
         proxy: 'http://stoma.loc'
     });
     gulp.watch('../**/*.php').on('change', browserSync.reload);
-    gulp.watch(['./css/**/*.scss', './css/*.scss'], ['sass']);
+    gulp.watch(['./css/**/*.scss', './css/main.scss'], ['sass']);
     gulp.watch('./js/*.js', ['js']);
     gulp.watch('./img/**/*', ['images']);
 });
