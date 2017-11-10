@@ -1,0 +1,43 @@
+.address {
+  padding-bottom: 50px;
+  position: relative;
+}
+
+.address__caption {
+  padding-right: 50px;
+  padding-left: 50px;
+}
+
+.address__number {
+  text-align: center;
+  letter-spacing: 0.413793px;
+  color: #000000;
+}
+
+.address__block {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.address__number--one {
+  font-size: 36px;
+}
+
+.address__number--two {
+  font-size: 24px;
+  padding-bottom: 28px;
+}
+
+.address__foto {
+  width: 999px;
+  height: 667px;
+  margin: 0;
+}
+
+.address__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}

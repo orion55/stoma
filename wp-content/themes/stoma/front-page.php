@@ -209,5 +209,49 @@
 				?>
             </div>
         </div>
+        <div class="phone box box--phone">
+            <h2 class="head">Свяжитесь с нами</h2>
+            <div class="phone__caption">
+                <div class="phone__number phone__number--one">
+					<?php
+					$phone1_3 = $stoma_options['phone1_3'];
+					if ( empty( $phone1_3 ) ): echo '8-495-638-0-648';
+					else: echo $phone1_3; endif;
+					?>
+                </div>
+                <div class="phone__number phone__number--two">
+					<?php
+					$phone2_4 = $stoma_options['phone2_4'];
+					if ( empty( $phone2_4 ) ): echo '8-498-661-4-863';
+					else: echo $phone2_4; endif;
+					?>
+                </div>
+            </div>
+        </div>
+        <div class="address box box--address">
+            <h2 class="head">Наш адрес</h2>
+            <div class="address__caption">
+                <div class="address__block">
+                    <div class="address__number address__number--one">
+						<?php
+						$address1_1 = $stoma_options['address1_1'];
+						if ( empty( $address1_1 ) ): echo '143969, Московская область, г. Реутов, ул.Октября д.28';
+						else: echo $address1_1; endif;
+						?>
+                    </div>
+                    <div class="address__number address__number--two">
+						<?php
+						$address2_2 = $stoma_options['address2_2'];
+						if ( empty( $address2_2 ) ): echo '(вход со стороны автостоянки)';
+						else: echo $address2_2; endif;
+						?>
+                    </div>
+                </div>
+                <div class="address__foto">
+                    <img src="<?php echo get_template_directory_uri(); ?>/assets/img/address/home.jpg"
+                         alt="address__pict" class="address__img">
+                </div>
+            </div>
+        </div>
     </div>
 <?php get_footer();

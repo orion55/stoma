@@ -1,0 +1,26 @@
+.phone {
+  padding-bottom: 50px;
+  position: relative;
+}
+
+.phone__caption {
+  padding-right: 50px;
+  padding-left: 50px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.phone__number {
+  font-weight: bold;
+  line-height: normal;
+  font-size: 48px;
+  text-align: center;
+  letter-spacing: 0.413793px;
+  color: #CA1D1D;
+}
+
+.phone__number--one {
+  margin-right: 100px;
+}

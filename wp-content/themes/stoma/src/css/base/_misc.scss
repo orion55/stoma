@@ -149,6 +149,28 @@
   }
 }
 
+.box--phone {
+  &:after {
+    width: 250px;
+    background-color: #CA1D1D;
+  }
+  &:before {
+    width: 250px;
+    background-color: #CA1D1D;
+  }
+}
+
+.box--address {
+  &:after {
+    width: 320px;
+    background-color: #CA1D1D;
+  }
+  &:before {
+    width: 320px;
+    background-color: #CA1D1D;
+  }
+}
+
 .box h2.head {
   text-transform: uppercase;
   font-weight: 300;
