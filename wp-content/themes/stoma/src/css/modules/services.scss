@@ -41,3 +41,22 @@
     color: darken(#99CC32, 20%);
   }
 }
+
+@media only screen and (min-device-width: 768px) and (max-width: 1199px) {
+
+}
+
+@media only screen and (max-width: 767px) {
+  .services {
+    padding-bottom: 10px;
+  }
+  .services__caption {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  .services__item {
+    width: 90%;
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+}

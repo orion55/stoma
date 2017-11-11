@@ -41,3 +41,27 @@
   height: 100%;
   object-fit: cover;
 }
+
+@media only screen and (min-device-width: 768px) and (max-width: 1199px) {
+  .address__foto {
+    width: 90%;
+    height: auto;
+    margin: 0 auto;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .address {
+    padding-bottom: 10px;
+  }
+
+  .address__caption {
+    padding-right: 10px;
+    padding-left: 10px;
+  }
+  .address__foto {
+    width: 90%;
+    height: auto;
+    margin: 0 auto;
+  }
+}

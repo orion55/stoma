@@ -24,3 +24,22 @@
 .phone__number--one {
   margin-right: 100px;
 }
+
+@media only screen and (min-device-width: 768px) and (max-width: 1199px) {
+
+}
+
+@media only screen and (max-width: 767px) {
+  .phone {
+    padding-bottom: 10px;
+  }
+
+  .phone__caption {
+    padding-right: 10px;
+    padding-left: 10px;
+    flex-direction: column;
+  }
+  .phone__number--one{
+    margin-right: 0;
+  }
+}

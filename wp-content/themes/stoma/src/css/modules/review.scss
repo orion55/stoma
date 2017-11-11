@@ -58,3 +58,21 @@
     margin-bottom: 0;
   }
 }
+
+@media only screen and (min-device-width: 768px) and (max-width: 1199px) {
+
+}
+
+@media only screen and (max-width: 767px) {
+  .review {
+    padding-bottom: 10px;
+  }
+
+  .review__caption {
+    padding-right: 10px;
+    padding-left: 10px;
+  }
+  .review__item {
+    padding: 20px 40px;
+  }
+}

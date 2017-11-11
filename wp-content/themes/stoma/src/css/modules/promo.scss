@@ -147,3 +147,70 @@
   opacity: 1;
   text-align: center;
 }
+
+@media only screen and (min-device-width: 891px) and (max-width: 1199px) {
+  .promo__wrap {
+    width: 100%;
+  }
+}
+
+@media only screen and (max-width: 890px) {
+  .promo__wrap {
+    width: 100%;
+    min-width: 320px;
+    flex-direction: column;
+    background-color: white;
+    opacity: 0.7;
+    box-shadow: 0 5px 8px -2px #858785;
+  }
+  .promo__box {
+    display: none;
+
+  }
+  .promo__text--ooo {
+    padding-bottom: 10px;
+  }
+  .promo__text--address {
+    width: 100%;
+    margin-right: 10px;
+  }
+  .promo__marker {
+    padding: 0;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+  .promo__block {
+    padding-bottom: 10px;
+  }
+  .promo__phone {
+    padding-bottom: 0;
+  }
+  .promo__price {
+    display: none;
+    width: 95%;
+    left: 50%;
+    transform: translateX(-50%);
+    height: auto;
+    padding-bottom: 10px;
+  }
+  .promo__price--text, .promo__price--bold {
+    font-size: 20px;
+  }
+  .promo {
+    height: 80vh;
+    margin: 0;
+  }
+  .promo__holder {
+    flex-direction: column;
+    bottom: 5px;
+    width: 90%;
+  }
+  .promo__container {
+    width: 100%;
+    justify-content: center;
+  }
+  .promo__container--red {
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+}

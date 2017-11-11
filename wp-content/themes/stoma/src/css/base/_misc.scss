@@ -180,3 +180,55 @@
   letter-spacing: 0.413793px;
   padding-bottom: 49px;
 }
+
+@media only screen and (min-device-width: 768px) and (max-width: 1199px) {
+  .box {
+    width: 100%;
+
+    &:after {
+      width: 30%;
+    }
+    &:before {
+      width: 30%;
+    }
+  }
+  .box--specialist, .box--helpful, .box--phone, .box--address {
+    &:after {
+      width: 20%;
+    }
+    &:before {
+      width: 20%;
+    }
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .box {
+    width: 100%;
+    min-width: 320px;
+    padding-top: 10px;
+    margin: 0 auto 20px;
+
+    &:after {
+      width: 15%;
+      top: 42px;
+      left: 10%;
+    }
+    &:before {
+      width: 15%;
+      top: 42px;
+      right: 10%;
+    }
+  }
+  .box h2.head {
+    padding-bottom: 20px;
+  }
+  .box--helpful, .box--phone, .box--address {
+    &:after {
+      display: none;
+    }
+    &:before {
+      display: none;
+    }
+  }
+}

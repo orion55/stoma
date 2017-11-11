@@ -66,3 +66,25 @@ a.shares-button {
 .shares__block {
   text-align: center;
 }
+
+@media only screen and (min-device-width: 768px) and (max-width: 1199px) {
+
+}
+
+@media only screen and (max-width: 767px) {
+  .shares {
+    padding-bottom: 10px;
+  }
+  .shares__item {
+    width: 90%;
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+  a.shares-button {
+    width: 90%;
+  }
+  .shares__caption {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+}

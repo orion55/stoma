@@ -15,3 +15,13 @@
   padding-top: 32px;
   padding-bottom: 0;
 }
+
+@media only screen and (min-device-width: 768px) and (max-width: 1199px) {
+  .site-footer .site-branding {
+    padding: 20px 0 0 20px;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+
+}

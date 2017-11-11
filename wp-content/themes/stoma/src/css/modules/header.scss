@@ -59,3 +59,26 @@
 .menu-item-has-children ul li a {
   margin: 10px;
 }
+
+@media only screen and (min-device-width: 768px) and (max-width: 1199px) {
+  .site-wrap {
+    width: 100%;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .site-wrap {
+    width: 100%;
+    min-width: 320px;
+  }
+  .menu-item-has-children > a:after {
+    content: "";
+  }
+  .sub-menu {
+    border: none;
+  }
+  .site-branding {
+    margin: 0 auto;
+    padding: 0 0 20px 0;
+  }
+}
