@@ -51,4 +51,5 @@
         </div>
     </header>
 
-    <div id="content" class="site-content">
+    <div id="content"
+         class="<?php if ( is_front_page() ) : echo "site-content--front"; else: echo "site-content"; endif; ?>">

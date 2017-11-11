@@ -181,6 +181,92 @@
   padding-bottom: 49px;
 }
 
+.site-content {
+  display: flex;
+  flex-direction: row;
+  width: 1100px;
+  margin: 0 auto;
+  padding: 10px;
+}
+
+.content-area {
+  width: 70%;
+  background-color: white;
+  margin-right: 30px;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.widget-area {
+  width: 30%;
+}
+
+.widget {
+  background-color: white;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.widget a, .site-main a {
+  color: $color-green;
+  transition: color .8s ease;
+  &:visited {
+    color: darken($color-green, 20%);
+  }
+  &:hover {
+    color: darken($color-green, 10%);
+  }
+}
+
+.widget input[type=submit], .site-main input[type=submit] {
+  display: inline-block;
+  zoom: 1;
+  line-height: normal;
+  white-space: nowrap;
+  vertical-align: middle;
+  text-align: center;
+  cursor: pointer;
+  user-select: none;
+  box-sizing: border-box;
+  font-family: inherit;
+  font-size: 100%;
+  padding: 5px 20px;
+  color: rgba(0, 0, 0, 0.80);
+  background-color: #E6E6E6;
+  text-decoration: none;
+  border-radius: 4px;
+  &:hover {
+    background-image: linear-gradient(transparent, rgba(0, 0, 0, 0.05) 40%, rgba(0, 0, 0, 0.10));
+  }
+  &:focus {
+    outline: 0;
+  }
+  &:active {
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15) inset, 0 0 6px rgba(0, 0, 0, 0.20) inset;
+    border-color: #000 \9
+  ;
+  }
+}
+
+.entry-title {
+  color: $color-red;
+}
+
+input.search-field {
+  margin-bottom: 5px;
+}
+
+.site-main h1, .site-main h2, .site-main h3, .site-main h4, .site-main h5, .site-main h6 {
+  color: $color-red;
+  text-align: center;
+}
+
+.widget-title {
+  text-align: center;
+  color: $color-red;
+  padding-bottom: 5px;
+}
+
 @media only screen and (min-device-width: 768px) and (max-width: 1199px) {
   .box {
     width: 100%;

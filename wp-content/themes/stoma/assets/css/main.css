@@ -234,6 +234,120 @@ a:hover {
 	text-transform: uppercase;
 }
 
+.site-content {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	flex-direction: row;
+	width: 1100px;
+	margin: 0 auto;
+	padding: 10px;
+	-webkit-box-orient: horizontal;
+	-webkit-box-direction: normal;
+	-ms-flex-direction: row;
+}
+
+.content-area {
+	width: 70%;
+	margin-right: 30px;
+	padding: 20px;
+	border-radius: 10px;
+	background-color: white;
+}
+
+.widget-area {
+	width: 30%;
+}
+
+.widget {
+	padding: 20px;
+	border-radius: 10px;
+	background-color: white;
+}
+
+.widget a,
+.site-main a {
+	-webkit-transition: color .8s ease;
+	transition: color .8s ease;
+	color: #99cc32;
+}
+
+.widget a:visited,
+.site-main a:visited {
+	color: #5c7a1e;
+}
+
+.widget a:hover,
+.site-main a:hover {
+	color: #7aa328;
+}
+
+.widget input[type=submit],
+.site-main input[type=submit] {
+	font-family: inherit;
+	font-size: 100%;
+	line-height: normal;
+	display: inline-block;
+	zoom: 1;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+	padding: 5px 20px;
+	cursor: pointer;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	text-align: center;
+	vertical-align: middle;
+	white-space: nowrap;
+	text-decoration: none;
+	color: rgba(0, 0, 0, .8);
+	border-radius: 4px;
+	background-color: #e6e6e6;
+}
+
+.widget input[type=submit]:hover,
+.site-main input[type=submit]:hover {
+	background-image: -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(40%, rgba(0, 0, 0, .05)), to(rgba(0, 0, 0, .1)));
+	background-image: linear-gradient(transparent, rgba(0, 0, 0, .05) 40%, rgba(0, 0, 0, .1));
+}
+
+.widget input[type=submit]:focus,
+.site-main input[type=submit]:focus {
+	outline: 0;
+}
+
+.widget input[type=submit]:active,
+.site-main input[type=submit]:active {
+	border-color: #000 \9;
+	-webkit-box-shadow: 0 0 0 1px rgba(0, 0, 0, .15) inset, 0 0 6px rgba(0, 0, 0, .2) inset;
+	box-shadow: 0 0 0 1px rgba(0, 0, 0, .15) inset, 0 0 6px rgba(0, 0, 0, .2) inset;
+}
+
+.entry-title {
+	color: #ca1d1d;
+}
+
+input.search-field {
+	margin-bottom: 5px;
+}
+
+.site-main h1,
+.site-main h2,
+.site-main h3,
+.site-main h4,
+.site-main h5,
+.site-main h6 {
+	text-align: center;
+	color: #ca1d1d;
+}
+
+.widget-title {
+	padding-bottom: 5px;
+	text-align: center;
+	color: #ca1d1d;
+}
+
 .site-header {
 	background: #343434;
 }

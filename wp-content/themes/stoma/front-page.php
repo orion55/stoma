@@ -1,5 +1,5 @@
 <?php get_header(); ?>
-    <div id="primary" class="content-area">
+    <div id="primary" class="content-area--front">
         <div class="promo">
             <img src="<?php echo get_template_directory_uri(); ?>/assets/img/promo/promo_pict.jpg" alt="promo_pict"
                  class="promo__img">
