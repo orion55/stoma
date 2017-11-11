@@ -1077,18 +1077,24 @@ a.shares-button {
 	width: 30%;
 }
 
-.box--specialist:after,
-.box--helpful:after,
 .box--phone:after,
 .box--address:after {
-	width: 20%;
+	width: 15%;
+}
+
+.box--phone:before,
+.box--address:before {
+	width: 15%;
+}
+
+.box--specialist:after,
+.box--helpful:after {
+	width: 12%;
 }
 
 .box--specialist:before,
-.box--helpful:before,
-.box--phone:before,
-.box--address:before {
-	width: 20%;
+.box--helpful:before {
+	width: 12%;
 }
 
 .site-wrap {
@@ -1102,6 +1108,10 @@ a.shares-button {
 .specialist__caption {
 	-ms-flex-pack: distribute;
 	justify-content: space-around;
+}
+
+.phone__number--one {
+	margin-right: 20px;
 }
 
 .address__foto {
