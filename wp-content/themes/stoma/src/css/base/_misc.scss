@@ -120,6 +120,15 @@
   }
 }
 
+.box--about {
+  &:after {
+    top: 92px;
+  }
+  &:before {
+    top: 92px;
+  }
+}
+
 .box--red {
   &:after {
     background-color: #CA1D1D;
@@ -250,6 +259,14 @@
 
 .entry-title {
   color: $color-red;
+  padding-bottom: 10px;
+}
+
+.entry-content p br {
+  content: "";
+  margin: 2em;
+  display: block;
+  font-size: 24%;
 }
 
 input.search-field {
@@ -294,6 +311,9 @@ input.search-field {
       width: 12%;
     }
   }
+  .site-content {
+    width: 100%;
+  }
 }
 
 @media only screen and (max-width: 767px) {
@@ -324,5 +344,17 @@ input.search-field {
     &:before {
       display: none;
     }
+  }
+  .site-content {
+    width: 100%;
+    min-width: 320px;
+    flex-direction: column;
+  }
+  .content-area {
+    width: 100%;
+    margin-right: 0;
+  }
+  .widget-area {
+    width: 100%;
   }
 }

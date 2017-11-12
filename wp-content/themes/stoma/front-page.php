@@ -47,10 +47,11 @@
                 </div>
             </div>
             <div class="promo__holder">
-                <a href="#" class="promo__container promo__container--red hvr-push">
+                <a href="<?php echo get_post_type_archive_link( 'share' ); ?>"
+                   class="promo__container promo__container--red hvr-push">
                     <img src="<?php echo get_template_directory_uri(); ?>/assets/img/promo/procent.png"
                          alt="procent" class="promo__pict">
-                    <div class="promo__desc">Получить скидку</div>
+                    <div class="promo__desc" href="">Получить скидку</div>
                 </a>
                 <a href="#" class="promo__container promo__container--green hvr-push">
                     <img src="<?php echo get_template_directory_uri(); ?>/assets/img/promo/tooth.png" alt="procent"
@@ -111,7 +112,7 @@
                                                                                   aria-hidden="true"></i></a>
             </div>
         </div>
-        <div class="about box">
+        <div class="about box box--about">
             <h2 class="head">О нас</h2>
             <div class="about__caption">
 				<?php
@@ -176,7 +177,7 @@
 				?>
             </div>
             <div class="helpful__block">
-                <a href="<?php echo get_post_type_archive_link( 'post' ); ?>"
+                <a href="<?php echo get_post_type_archive_link( 'page' ); ?>"
                    class="pure-button shares-button button-error">Больше статей <i class="fa fa-arrow-right"
                                                                                    aria-hidden="true"></i></a>
             </div>

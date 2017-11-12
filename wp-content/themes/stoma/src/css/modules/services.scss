@@ -30,6 +30,9 @@
   &:hover .services__link {
     color: #99CC32;
   }
+  &:last-child {
+    margin-right: 0;
+  }
 }
 
 .services__link {
