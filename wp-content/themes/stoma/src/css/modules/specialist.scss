@@ -43,6 +43,22 @@
   border-radius: 10px;
 }
 
+.specialist__item--list {
+  & .specialist__foto {
+    margin: 0 auto;
+  }
+  & p {
+    text-align: center;
+  }
+}
+
+.specialist--archive {
+  & .specialist {
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+}
+
 @media only screen and (min-device-width: 768px) and (max-width: 1199px) {
   .specialist__caption {
     justify-content: space-around;

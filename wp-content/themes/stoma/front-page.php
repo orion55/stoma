@@ -53,7 +53,8 @@
                          alt="procent" class="promo__pict">
                     <div class="promo__desc" href="">Получить скидку</div>
                 </a>
-                <a href="#" class="promo__container promo__container--green hvr-push">
+                <a href="<?php echo get_site_url(); ?>/?page_id=1868"
+                   class="promo__container promo__container--green hvr-push">
                     <img src="<?php echo get_template_directory_uri(); ?>/assets/img/promo/tooth.png" alt="procent"
                          class="promo__pict">
                     <div class="promo__desc">Записаться<br>на приём</div>
@@ -70,7 +71,7 @@
 					'orderby'     => 'date',
 					'order'       => 'DESC',
 					'post_type'   => 'page',
-					'exclude'     => [ 5 ]
+					'category'    => '191'
 				);
 				$myposts = get_posts( $args );
 				foreach ( $myposts as $post ) {

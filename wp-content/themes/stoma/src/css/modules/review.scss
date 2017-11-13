@@ -59,6 +59,22 @@
   }
 }
 
+.review--archive {
+  & .entry-title {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+  & .review__item {
+    margin-top: 0;
+    & p {
+      margin-bottom: 0;
+    }
+  }
+  & .review{
+    margin-bottom: 0;
+  }
+}
+
 @media only screen and (min-device-width: 768px) and (max-width: 1199px) {
 
 }

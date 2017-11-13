@@ -381,6 +381,12 @@ input.search-field {
 	margin-bottom: 10px;
 }
 
+.navigation-list {
+	padding-top: 20px;
+	padding-bottom: 10px;
+	text-align: center;
+}
+
 .site-header {
 	background: #343434;
 }
@@ -939,6 +945,19 @@ a.shares-button {
 	object-fit: cover;
 }
 
+.specialist__item--list .specialist__foto {
+	margin: 0 auto;
+}
+
+.specialist__item--list p {
+	text-align: center;
+}
+
+.specialist--archive .specialist {
+	margin-bottom: 0;
+	padding-bottom: 0;
+}
+
 .helpful {
 	position: relative;
 	padding-bottom: 20px;
@@ -1070,6 +1089,23 @@ a.shares-button {
 }
 
 .review__content p {
+	margin-bottom: 0;
+}
+
+.review--archive .entry-title {
+	margin-top: 0;
+	margin-bottom: 0;
+}
+
+.review--archive .review__item {
+	margin-top: 0;
+}
+
+.review--archive .review__item p {
+	margin-bottom: 0;
+}
+
+.review--archive .review {
 	margin-bottom: 0;
 }
 

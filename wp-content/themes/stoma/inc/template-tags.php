@@ -62,7 +62,7 @@ if ( ! function_exists( 'stoma_entry_footer' ) ) :
 				sprintf(
 					wp_kses(
 					/* translators: %s: post title */
-						__( 'Leave a Comment<span class="screen-reader-text"> on %s</span>', 'stoma' ),
+						__( 'Оставьте комментарий<span class="screen-reader-text"> on %s</span>', 'stoma' ),
 						array(
 							'span' => array(
 								'class' => array(),
@@ -79,7 +79,7 @@ if ( ! function_exists( 'stoma_entry_footer' ) ) :
 			sprintf(
 				wp_kses(
 				/* translators: %s: Name of current post. Only visible to screen readers */
-					__( 'Edit <span class="screen-reader-text">%s</span>', 'stoma' ),
+					__( 'Редактировать <span class="screen-reader-text">%s</span>', 'stoma' ),
 					array(
 						'span' => array(
 							'class' => array(),

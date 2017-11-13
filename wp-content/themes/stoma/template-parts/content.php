@@ -43,6 +43,7 @@
 			'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'stoma' ),
 			'after'  => '</div>',
 		) );
+
 		?>
     </div><!-- .entry-content -->
 
