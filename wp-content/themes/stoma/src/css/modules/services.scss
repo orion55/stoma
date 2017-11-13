@@ -27,7 +27,7 @@
   &:nth-child(3n) {
     margin-right: 0;
   }
-  &:hover .services__link {
+  &:hover {
     color: #99CC32;
   }
   &:last-child {
@@ -43,6 +43,7 @@
   &:visited {
     color: darken(#99CC32, 20%);
   }
+
 }
 
 @media only screen and (min-device-width: 768px) and (max-width: 1199px) {

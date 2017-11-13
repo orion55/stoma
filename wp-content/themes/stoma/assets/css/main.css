@@ -364,6 +364,23 @@ input.search-field {
 	color: #ca1d1d;
 }
 
+.page > h1 {
+	margin-top: 0;
+}
+
+.page .entry-title {
+	margin-bottom: 0;
+	padding-bottom: 0;
+}
+
+.page .entry-content {
+	margin-top: 0;
+}
+
+.page h2 {
+	margin-bottom: 10px;
+}
+
 .site-header {
 	background: #343434;
 }
@@ -684,7 +701,7 @@ input.search-field {
 	margin-right: 0;
 }
 
-.services__item:hover .services__link {
+.services__item:hover {
 	color: #99cc32;
 }
 

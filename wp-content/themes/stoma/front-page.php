@@ -76,8 +76,8 @@
 				foreach ( $myposts as $post ) {
 					setup_postdata( $post );
 					?>
-                    <div class="services__item hvr-pop"><a href="<?php the_permalink(); ?>"
-                                                           class="services__link"><?php the_title(); ?></a></div>
+                    <a href="<?php the_permalink(); ?>"
+                       class="services__item hvr-pop services__link"><?php the_title(); ?></a>
 					<?php
 				}
 				wp_reset_postdata();
