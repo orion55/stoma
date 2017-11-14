@@ -137,7 +137,7 @@ class Toolset_Association_Repository {
 	/**
 	 * Create an association instance from provided values.
 	 *
-	 * @param string|Toolset_Relationship_Definition $relationship_definition_source
+	 * @param int|string|IToolset_Relationship_Definition $relationship_definition_source
 	 * @param int|string $association_trid
 	 * @param array $element_sources Elements indexed by role names - either Toolset_Element instances or ids (can be mixed).
 	 *

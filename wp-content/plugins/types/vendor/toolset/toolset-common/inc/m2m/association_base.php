@@ -96,7 +96,7 @@ abstract class Toolset_Association_Base implements IToolset_Association {
 	 * todo get rid of this, move to the enum
 	 */
 	public static function validate_element_role( $element_role ) {
-		if( ! in_array( $element_role, Toolset_Relationship_Role::parent_child() ) ) {
+		if( ! in_array( $element_role, Toolset_Relationship_Role::parent_child_role_names() ) ) {
 			throw new InvalidArgumentException( 'Invalid element key.' );
 		}
 	}

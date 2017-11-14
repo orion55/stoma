@@ -58,10 +58,47 @@ ToolsetCommon.UserEditor.VisualComposerEditor = function( $ ) {
 		}
 	}
 
+    self.initializeVisualComposerBackendEditor = function() {
+        $( window ).load( function() {
+            /* no fullscreen, no vc save button */
+            jQuery( '#vc_navbar .vc_save-backend, #vc_fullscreen-button' ).remove();
+
+            /* show vc editor */
+            vc.app.show();
+            vc.app.status = 'shown';
+
+            var viewsBasicTextarea 		 = jQuery( '#wpv_content' );
+            var wordpressDefaultTextarea = jQuery( '#content' );
+
+            var viewsCSSArea = jQuery( '#wpv_template_extra_css' );
+            vc.post_settings_view.on( 'save', function() {
+                if( this.saved_css_data != vc.$custom_css.val() ) {
+                    viewsCSSArea.val( vc.$custom_css.val() );
+
+                    WPViews.ct_edit_screen.vm.templateCssAccepted = function(){ return vc.$custom_css.val(); };
+                    WPViews.ct_edit_screen.vm.propertyChangeByComparator( 'templateCss', _.isEqual );
+                }
+            } );
+
+            /* Visual Composer fires the 'sync' event everytime something is changed */
+            /* we use this to enable button 'Save all sections at once' if content has changed */
+            vc.shortcodes.on( 'sync', function() {
+                if( wordpressDefaultTextarea.val() != viewsBasicTextarea.val() ) {
+                    viewsBasicTextarea.val( wordpressDefaultTextarea.val() );
+
+                    WPViews.ct_edit_screen.vm.postContentAccepted = function(){ return wordpressDefaultTextarea.val() };
+                    WPViews.ct_edit_screen.vm.propertyChangeByComparator( 'postContent', _.isEqual );
+                }
+            } );
+        });
+	}
+
 	self.init = function() {
 		Toolset.hooks.addFilter( 'wpv-filter-wpv-shortcodes-gui-before-do-action', self.secureShortcodeFromSanitization );
 
         Toolset.hooks.addFilter( 'wpv-filter-wpv-shortcodes-transform-format', self.secureShortcodeFromSanitization );
+
+        self.initializeVisualComposerBackendEditor();
 	};
 	
 	self.init();

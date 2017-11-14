@@ -482,6 +482,18 @@ abstract class Toolset_Field_Group {
 	}
 
 
+	/**
+	 * Updates the assinged types
+	 *
+	 * After assigned a new assined type, this method must be called in order to update the cached property `assigned_to_types`
+	 *
+	 * @param String[] $types List of types
+	 */
+	protected function update_assigned_types( $types ) {
+		$this->assigned_to_types = $types;
+	}
+
+
 	private $assigned_to_items = null;
 
 

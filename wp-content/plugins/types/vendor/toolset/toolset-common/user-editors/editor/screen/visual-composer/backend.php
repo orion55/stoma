@@ -6,6 +6,24 @@ class Toolset_User_Editors_Editor_Screen_Visual_Composer_Backend
 	private $post;
 	public $editor;
 
+	/**
+	 * @var Toolset_Constants
+	 */
+	protected $constants;
+
+	/**
+	 * Toolset_User_Editors_Editor_Screen_Visual_Composer_Backend constructor.
+	 *
+	 * @param Toolset_Constants|null $constants
+	 */
+	public function __construct( Toolset_Constants $constants = null ) {
+		$this->constants = $constants
+			? $constants
+			: new Toolset_Constants();
+
+		$this->constants->define( 'VC_SCREEN_ID', 'vc' );
+	}
+
 	public function initialize() {
 		add_action( 'init',												array( $this, 'register_assets' ), 50 );
 		add_action( 'admin_enqueue_scripts',							array( $this, 'admin_enqueue_assets' ), 50 );
@@ -13,7 +31,19 @@ class Toolset_User_Editors_Editor_Screen_Visual_Composer_Backend
 		add_filter( 'toolset_filter_toolset_registered_user_editors',	array( $this, 'register_user_editor' ) );
 		add_filter( 'wpv_filter_wpv_layout_template_extra_attributes',	array( $this, 'layout_template_attribute' ), 10, 3 );
 		add_action( 'wpv_action_wpv_ct_inline_user_editor_buttons',		array( $this, 'register_inline_editor_action_buttons' ) );
-		
+
+		add_filter( 'wpcf_filter_wpcf_admin_get_current_edited_post', array( $this, 'get_current_ct_id_for_wpcf_admin' ), 11, 1 );
+
+		add_action( 'wpv_action_wpv_save_item', array( $this, 'save_vc_custom_css' ) );
+
+		add_filter( 'vc_btn_a_href', array( 'WPV_Frontend_Render_Filters', 'replace_shortcode_placeholders_with_brackets' ) );
+		add_filter( 'vc_btn_a_href', 'do_shortcode' );
+
+		add_filter( 'vc_btn_a_title', array( 'WPV_Frontend_Render_Filters', 'replace_shortcode_placeholders_with_brackets' ) );
+		add_filter( 'vc_btn_a_title', 'do_shortcode' );
+
+		add_filter( 'vc_raw_html_module_content', array( 'WPV_Frontend_Render_Filters', 'replace_shortcode_placeholders_with_brackets' ) );
+
 		// Post edit page integration
 		//add_action( 'edit_form_after_title',				array( $this, 'preventNested' ) );
 	}
@@ -105,9 +135,16 @@ class Toolset_User_Editors_Editor_Screen_Visual_Composer_Backend
 			TOOLSET_COMMON_VERSION,
 			true
 		);
-		
+
+		$toolset_assets_manager->register_style(
+			'toolset-user-editors-vc-editor-style',
+			TOOLSET_COMMON_URL . '/user-editors/editor/screen/visual-composer/backend_editor.css',
+			array(),
+			TOOLSET_COMMON_VERSION
+		);
+
 		$vc_layout_template_i18n = array(
-            'template_editor_url'	=> admin_url( 'admin.php?page=ct-editor' ),
+			'template_editor_url'	=> admin_url( 'admin.php?page=ct-editor' ),
 			'template_overlay'		=> array(
 										'title'		=> sprintf( __( 'You created this template using %1$s', 'wpv-views' ), $this->editor->get_name() ),
 										'button'	=> sprintf( __( 'Edit with %1$s', 'wpv-views' ), $this->editor->get_name() ),
@@ -122,61 +159,45 @@ class Toolset_User_Editors_Editor_Screen_Visual_Composer_Backend
 		
 	}
 	
-	public function admin_enqueue_assets() {
+	public function admin_enqueue_assets( $screen_id ) {
+		$content_template_has_vc = ( get_post_meta( wpv_getget( 'ct_id' ), '_toolset_user_editors_editor_choice', true ) == $this->constants->constant( 'VC_SCREEN_ID' ) );
+		$ct_edit_page_screen_id = class_exists( 'WPV_Page_Slug' ) ? WPV_Page_Slug::CONTENT_TEMPLATES_EDIT_PAGE : 'toolset_page_ct-editor';
+
 		if ( $this->is_views_or_wpa_edit_page() ) {
 			do_action( 'toolset_enqueue_scripts', array( 'toolset-user-editors-vc-layout-template-script' ) );
 		}
 
-		do_action( 'toolset_enqueue_scripts', array( 'toolset-user-editors-vc-script' ) );
+		if (
+				$content_template_has_vc
+				&& $ct_edit_page_screen_id === $screen_id
+		) {
+			// We need to enqueue the following style and script on the Content Template edit page but only when the
+			// template is built with Visual Composer.
+			do_action( 'toolset_enqueue_scripts', array( 'toolset-user-editors-vc-script' ) );
+			do_action( 'toolset_enqueue_styles', array( 'toolset-user-editors-vc-editor-style' ) );
+		}
+
 	}
 
 	public function html_output() {
-		
-		ob_start(); ?>
-		<div style="display: none;">
-			<input type="hidden" id="post_ID" name="post_ID" value="<?php echo $this->post->ID; ?>">
-			<textarea cols="30" rows="10" id="wpv_content" name="wpv_content" data-bind="textInput: postContentAccepted"></textarea>
-			<?php wp_editor(  $this->post->post_content, 'content', array( 'media_buttons' => true ) ); ?>
-		</div>
 
-		<div id="wpb_visual_composer" style="padding-bottom: 5px; background: #fff;"><?php $this->editor->renderEditor( $this->post ); ?></div>
-		<?php
-		$script = "<script>
-				jQuery( window ).load( function( ) {
-					/* no fullscreen, no vc save button */
-					jQuery( '#vc_navbar .vc_save-backend, #vc_fullscreen-button' ).remove();
+		ob_start();
 
-					/* show vc editor */
-					vc.app.show();
-					vc.app.status = 'shown';
-					
-					var viewsBasicTextarea 		 = jQuery( '#wpv_content' );
-					var wordpressDefaultTextarea = jQuery( '#content' );
-					
-					/* Visual Composer fires the 'sync' event everytime something is changed */
-					/* we use this to enable button 'Save all sections at once' if content has changed */
-					vc.shortcodes.on( 'sync', function() {
-						if( wordpressDefaultTextarea.val() != viewsBasicTextarea.val() ) {
-							viewsBasicTextarea.val( wordpressDefaultTextarea.val() );
+		include_once( dirname( __FILE__ ) . '/backend.phtml' );
 
-							WPViews.ct_edit_screen.vm.postContentAccepted = function(){ return wordpressDefaultTextarea.val() };
-							WPViews.ct_edit_screen.vm.propertyChangeByComparator( 'postContent', _.isEqual );
-						}
-					} );
-				} );</script>";
-		echo preg_replace('/\v(?:[\v\h]+)/', '', $script);
 		$output = ob_get_contents();
+
 		ob_end_clean();
-		
+
 		$admin_url = admin_url( 'admin.php?page=ct-editor&ct_id=' . esc_attr( $_GET['ct_id'] ) );
-		$output .= '<p>' 
-			. sprintf( 
-				__( '%1$sStop using %2$s for this Content Template%3$s', 'wpv-views' ), 
-				'<a href="' . esc_url( $admin_url ) . '&ct_editor_choice=basic">',
-				'Visual Composer',
-				'</a>'
-			) 
-			. '</p>';
+		$output .= '<p>'
+				   . sprintf(
+						   __( '%1$sStop using %2$s for this Content Template%3$s', 'wpv-views' ),
+						   '<a href="' . esc_url( $admin_url ) . '&ct_editor_choice=basic">',
+						   'Visual Composer',
+						   '</a>'
+				   )
+				   . '</p>';
 
 		return $output;
 	}
@@ -251,7 +272,7 @@ class Toolset_User_Editors_Editor_Screen_Visual_Composer_Backend
 	*/
 	
 	public function layout_template_attribute( $attributes, $content_template, $view_id ) {
-		$content_template_has_vc = ( get_post_meta( $content_template->ID, '_toolset_user_editors_editor_choice', true ) == 'vc' );
+		$content_template_has_vc = ( get_post_meta( $content_template->ID, '_toolset_user_editors_editor_choice', true ) == $this->constants->constant( 'VC_SCREEN_ID' ) );
 		if ( $content_template_has_vc ) {
 			$attributes['builder'] = $this->editor->get_id();
 		}
@@ -259,7 +280,7 @@ class Toolset_User_Editors_Editor_Screen_Visual_Composer_Backend
 	}
 	
 	public function register_inline_editor_action_buttons( $content_template ) {
-		$content_template_has_vc = ( get_post_meta( $content_template->ID, '_toolset_user_editors_editor_choice', true ) == 'vc' );
+		$content_template_has_vc = ( get_post_meta( $content_template->ID, '_toolset_user_editors_editor_choice', true ) == $this->constants->constant( 'VC_SCREEN_ID' ) );
 		?>
 		<button 
 			class="button button-secondary js-wpv-ct-apply-user-editor js-wpv-ct-apply-user-editor-<?php echo esc_attr( $this->editor->get_id() ); ?>"
@@ -273,5 +294,42 @@ class Toolset_User_Editors_Editor_Screen_Visual_Composer_Backend
 
 	public function force_shortcode_generator_display( $register_section ) {
 		return true;
+	}
+
+	/**
+	 * Get the current content template ID to append to the third-party shortcodes added in the Fields and Views dialog.
+	 *
+	 * @param   WP_POST   $current_post   The current post.
+	 *
+	 * @return  WP_Post   The filtered post.
+	 *
+	 * @since 2.5.1
+	 */
+	public function get_current_ct_id_for_wpcf_admin( $current_post ) {
+		$ct_id = wpv_getget( 'ct_id' );
+
+		if ( ! empty( $ct_id ) ) {
+			$current_post = get_post( $ct_id );
+		}
+
+		return $current_post;
+	}
+
+	/**
+	 * Save Visual Composer Custom CSS upon content template save.
+	 *
+	 * @param   $content_template_id   The ID of the content template to save the custom CSS for.
+	 *
+	 * @since 2.5.1
+	 */
+	public function save_vc_custom_css( $content_template_id ) {
+		$content_template_has_vc = ( get_post_meta( $content_template_id, '_toolset_user_editors_editor_choice', true ) == $this->constants->constant( 'VC_SCREEN_ID' ) );
+		if ( $content_template_has_vc ) {
+			foreach ( $_POST['properties'] as $property ) {
+				if ( 'template_extra_css' === $property['name'] ) {
+					update_post_meta( $content_template_id, '_wpb_post_custom_css', $property['value'] );
+				}
+			}
+		}
 	}
 }

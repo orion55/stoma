@@ -343,6 +343,3 @@ if ( is_admin() ) {
  * $phone1_3 = $stoma_options['phone1_3']; // Phone1
  * $phone2_4 = $stoma_options['phone2_4']; // Phone2
  */
-
-add_theme_support( 'post-thumbnails' );
-add_image_size( 'single-post-thumbnail', 695, 520, true );

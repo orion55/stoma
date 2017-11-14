@@ -10,8 +10,14 @@ final class Toolset_Field_Utils {
 
 
 	// Field domains supported by the page.
+
+	/** @deprecated Use Toolset_Element_Domain::POSTS instead. */
 	const DOMAIN_POSTS = 'posts';
+
+	/** @deprecated Use Toolset_Element_Domain::USERS instead. */
 	const DOMAIN_USERS = 'users';
+
+	/** @deprecated Use Toolset_Element_Domain::TERMS instead. */
 	const DOMAIN_TERMS = 'terms';
 
 	// Since PHP 5.6, noooo!
@@ -25,6 +31,7 @@ final class Toolset_Field_Utils {
 	 *
 	 * @return array
 	 * @since 2.0
+	 * @deprecated Use Toolset_Element_Domain::all() instead.
 	 */
 	public static function get_domains() {
 		return array( self::DOMAIN_POSTS, self::DOMAIN_USERS, self::DOMAIN_TERMS );

@@ -39,7 +39,7 @@ class Toolset_Association_Translation_Set extends Toolset_Association_Base {
 
 		parent::__construct( $trid, $relationship_definition );
 
-		foreach( Toolset_Relationship_Role::all() as $role ) {
+		foreach( Toolset_Relationship_Role::all_role_names() as $role ) {
 			$this->element_sources[ $role ] = toolset_getarr( $element_sources, $role, null );
 		}
 	}

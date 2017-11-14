@@ -24,8 +24,6 @@ class Toolset_Shortcode_Attr_Item_Id implements Toolset_Shortcode_Attr_Interface
 		}
 
 		return $this->return_single_id( $role_id );
-
-		return false;
 	}
 
 	/**

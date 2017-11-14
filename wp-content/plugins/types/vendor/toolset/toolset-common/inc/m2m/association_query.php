@@ -151,9 +151,20 @@ class Toolset_Association_Query extends Toolset_Relationship_Query_Base {
 		//
 		//
 		if( $this->has_query_var( self::QUERY_RELATIONSHIP_SLUG ) ) {
+			$relationship_slug = $this->get_query_var( self::QUERY_RELATIONSHIP_SLUG );
+			$relationship = Toolset_Relationship_Utils::get_relationship_definition( $relationship_slug );
+
+			if( null === $relationship ) {
+				// This will cause the query to return no results, as there can be no associations
+				// for a non-existent relationship.
+				$relationship_id = 0;
+			} else {
+				$relationship_id = $relationship->get_row_id();
+			}
+
 			$where_clauses[] = $wpdb->prepare(
-				"association.relationship LIKE %s",
-				$this->get_query_var( self::QUERY_RELATIONSHIP_SLUG )
+				"association.relationship_id = %d",
+				$relationship_id
 			);
 		}
 
@@ -322,7 +333,7 @@ class Toolset_Association_Query extends Toolset_Relationship_Query_Base {
 			$sep = self::GROUP_CONCAT_SEPARATOR;
 			$select_fields = array(
 				'trid' => "$groupby_table.trid",
-				'relationship' => "GROUP_CONCAT($groupby_table.relationship SEPARATOR '$sep')",
+				'relationship_id' => "GROUP_CONCAT($groupby_table.relationship_id SEPARATOR '$sep')",
 				'association_id' => "GROUP_CONCAT($groupby_table.id SEPARATOR '$sep')",
 				'lang' => "GROUP_CONCAT($groupby_table.lang SEPARATOR '$sep')",
 				'parent_id' => "GROUP_CONCAT($groupby_table.parent_id SEPARATOR '$sep')",
@@ -335,7 +346,7 @@ class Toolset_Association_Query extends Toolset_Relationship_Query_Base {
 			// The simplest case, there's no need to deal with translations at all.
 			$select_fields = array(
 				'trid' => 'association.trid',
-				'relationship' => 'association.relationship',
+				'relationship_id' => 'association.relationship_id',
 				'association_id' => 'association.id',
 				'parent_id' => 'association.parent_id',
 				'child_id' => 'association.child_id',
@@ -363,7 +374,7 @@ class Toolset_Association_Query extends Toolset_Relationship_Query_Base {
 		$sql_join = '';
 		if( $join_relationships ) {
 			$sql_join .= ' JOIN ' . Toolset_Relationship_Table_Name::relationships() . ' AS relationship
-				ON ( association.relationship LIKE relationship.slug ) ';
+				ON ( association.relationship_id LIKE relationship.id ) ';
 		}
 		if( ! empty( $join_wp_posts_on ) ) {
 			$sql_join .= " JOIN {$wpdb->posts} ON ( association.{$join_wp_posts_on} = {$wpdb->posts}.ID ) ";
@@ -542,7 +553,7 @@ class Toolset_Association_Query extends Toolset_Relationship_Query_Base {
 	 */
 	private function postprocess_element_ids( $rows, $role ) {
 
-		$column_name = Toolset_Relationship_Database_Operations::role_to_column( $role );
+		$column_name = Toolset_Relationship_Database_Operations::get_instance()->role_to_column( $role );
 
 		if( Toolset_Relationship_Multilingual_Mode::is_on() ) {
 			$results = array();
@@ -574,7 +585,7 @@ class Toolset_Association_Query extends Toolset_Relationship_Query_Base {
 	 */
 	private function postprocess_elements( $rows, $role ) {
 
-		$column_name = Toolset_Relationship_Database_Operations::role_to_column( $role );
+		$column_name = Toolset_Relationship_Database_Operations::get_instance()->role_to_column( $role );
 
 		$results = array();
 		foreach( $rows as $row ) {
@@ -641,8 +652,8 @@ class Toolset_Association_Query extends Toolset_Relationship_Query_Base {
 				}
 
 				// All relationship slugs should be the same, we just grab one of them.
-				$relationship_slugs = $this->get_field_by_language( $row, 'relationship', $language_codes, true );
-				$relationship_slug = array_pop( $relationship_slugs );
+				$relationship_ids = $this->get_field_by_language( $row, 'relationship_id', $language_codes, true );
+				$relationship_id = (int) array_pop( $relationship_ids );
 
 			} else {
 
@@ -650,7 +661,7 @@ class Toolset_Association_Query extends Toolset_Relationship_Query_Base {
 				$parent_source = (int) toolset_getarr( $row, 'parent_id' );
 				$child_source = (int) toolset_getarr( $row, 'child_id' );
 				$intermediary_source = (int) toolset_getarr( $row, 'intermediary_id' );
-				$relationship_slug = toolset_getarr( $row, 'relationship' );
+				$relationship_id = (int) toolset_getarr( $row, 'relationship_id' );
 
 			}
 
@@ -660,7 +671,7 @@ class Toolset_Association_Query extends Toolset_Relationship_Query_Base {
 			// Add the association to results.
 			try {
 				$association = $association_repository->instantiate(
-					$relationship_slug,
+					$relationship_id,
 					$association_trid,
 					array(
 						Toolset_Relationship_Role::PARENT => $parent_source,
@@ -864,8 +875,8 @@ class Toolset_Association_Query extends Toolset_Relationship_Query_Base {
 	 * @return array Main row, updated.
 	 */
 	private function merge_rows( $main, $completion ) {
-		foreach( Toolset_Relationship_Role::all() as $role ) {
-			$column_name = Toolset_Relationship_Database_Operations::role_to_column( $role );
+		foreach( Toolset_Relationship_Role::all_role_names() as $role ) {
+			$column_name = Toolset_Relationship_Database_Operations::get_instance()->role_to_column( $role );
 			$main_value = (int) toolset_getarr( $main, $column_name );
 			if( 0 === $main_value ) {
 				$main[ $column_name ] = (int) toolset_getarr( $completion, $column_name );

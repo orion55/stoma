@@ -8,7 +8,7 @@
 class Toolset_Condition_Plugin_Types_Ready_For_M2M extends Toolset_Condition_Plugin_Types_Active {
 
 	public function is_met() {
-		return ( parent::is_met() && true === apply_filters( 'types_is_ready_for_m2m', false ) );
+		return ( parent::is_met() && true === apply_filters( 'toolset_is_m2m_ready', false ) );
 	}
 
 }

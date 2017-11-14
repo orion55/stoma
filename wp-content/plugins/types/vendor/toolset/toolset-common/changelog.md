@@ -1,5 +1,17 @@
 # Toolset Common Library
 
+## 2.5.5
+* Released with Types 2.2.20 and Views 2.5.1
+* Fix the way we determine whether the m2m API should be enabled on fresh sites without post relationships by default (types-1252).
+* Fix several compatibility issues with Visual Composer.
+* Fix a problem when gathering the title of some Types fields.
+
+## 2.5.4
+* Released with CRED 1.9.3
+* Include a shared Toolset JS shortcodes library.
+* Fixed a problem with loading the latest Bootstrap CSS Components from Toolset Common.
+* Fixed some notices caused by slightly different array structures on fields.
+
 ## 2.5.3
 * Released with Types 2.2.17
 

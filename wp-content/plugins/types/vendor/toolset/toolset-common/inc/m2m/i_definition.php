@@ -95,7 +95,7 @@ interface IToolset_Relationship_Definition {
 	/**
 	 * Get a relationship entity type.
 	 *
-	 * @param string $element_role
+	 * @param string|IToolset_Relationship_Role $element_role
 	 *
 	 * @return Toolset_Relationship_Element_Type
 	 * @since m2m
@@ -106,7 +106,7 @@ interface IToolset_Relationship_Definition {
 	/**
 	 * Determine if there are posts on the given side of the relationship.
 	 *
-	 * @param string $element_role
+	 * @param string|IToolset_Relationship_Role $element_role
 	 *
 	 * @return bool
 	 * @since m2m
@@ -155,8 +155,8 @@ interface IToolset_Relationship_Definition {
 	 * So far, only native relationships are supported. In their case, an intermediary post is created automatically,
 	 * if the relationship requires it.
 	 *
-	 * @param int|WP_Post|Toolset_Element $parent Parent element (of matching domain, type and other conditions)
-	 * @param int|WP_Post|Toolset_Element $child Child element (of matching domain, type and other conditions)
+	 * @param int|WP_Post|IToolset_Element $parent Parent element (of matching domain, type and other conditions)
+	 * @param int|WP_Post|IToolset_Element $child Child element (of matching domain, type and other conditions)
 	 *
 	 * @return Toolset_Result|Toolset_Association_Base The newly created association or a negative Toolset_Result when it could not have been created.
 	 * @throws RuntimeException when the association cannot be created because of a known reason. The exception would
@@ -196,7 +196,7 @@ interface IToolset_Relationship_Definition {
 	/**
 	 * Get a custom role name that should be recognized in shortcodes instead of parent, child, etc.
 	 *
-	 * @param string $role One of the Toolset_Relationship_Role values.
+	 * @param string|IToolset_Relationship_Role $role One of the Toolset_Relationship_Role values.
 	 *
 	 * @return string Custom role name.
 	 * @since m2m
@@ -218,7 +218,7 @@ interface IToolset_Relationship_Definition {
 	 *
 	 * The name will be sanitized and the value actually saved will be returned.
 	 *
-	 * @param string $role One of the Toolset_Relationship_Role values.
+	 * @param string|IToolset_Relationship_Role $role One of the Toolset_Relationship_Role values.
 	 * @param string $custom_name Custom name for the role.
 	 *
 	 * @return string Sanitized custom name

@@ -18,7 +18,12 @@ class Toolset_Relationship_Element_Type {
 	/** @var string[] Possible element types within the domain. */
 	private $types;
 
+
 	// Currently, only posts are supported.
+
+	/**
+	 * @deprecated Use Toolset_Element_Domain::POSTS instead.
+	 */
 	const DOMAIN_POSTS = 'posts';
 
 	

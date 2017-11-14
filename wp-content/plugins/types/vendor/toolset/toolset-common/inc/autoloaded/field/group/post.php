@@ -80,6 +80,7 @@ class Toolset_Field_Group_Post extends Toolset_Field_Group {
 			}
 		}
 
+		$this->update_assigned_types( $post_types );
 		$post_types = empty( $post_types )
 			? ''
 			: implode( ',', $post_types );

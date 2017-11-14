@@ -263,7 +263,7 @@ class Toolset_Relationship_WPML_Interoperability {
 
 		// Refresh the view for all posts that take part in the association.
 		$results = new Toolset_Result_Set();
-		foreach ( Toolset_Relationship_Role::parent_child() as $element_role ) {
+		foreach ( Toolset_Relationship_Role::parent_child_role_names() as $element_role ) {
 			if ( $relationship_definition->is_post( $element_role ) ) {
 				$result = $this->refresh_view_for_post_in_association(
 					$element_ids[ $element_role ], $element_role, $relationship_definition->get_slug(), $association_id

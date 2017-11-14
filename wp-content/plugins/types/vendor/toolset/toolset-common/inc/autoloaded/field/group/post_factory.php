@@ -46,15 +46,17 @@ class Toolset_Field_Group_Post_Factory extends Toolset_Field_Group_Factory {
 	 *
 	 * @param string $name Sanitized field group name. Note that the final name may change when new post is inserted.
 	 * @param string $title Field group title.
+	 * @param String $status Post status
+	 * @param String $purpose Purpose.
 	 *
 	 * @return null|Toolset_Field_Group The new field group or null on error.
 	 */
-	public static function create( $name, $title = '', $status = 'draft' ) {
+	public static function create( $name, $title = '', $status = 'draft', $purpose = Toolset_Field_Group_Post::PURPOSE_GENERIC ) {
 		// we cannot use self::get_instance here, because of low PHP requirements and missing get_called_class function
 		// we have a fallback class for get_called_class but that scans files by debug_backtrace and return 'self'
 		//   instead of Toolset_Field_Group_Term_Factory like the original get_called_class() function does
 		// ends in an error because of parents (abstract) $var = new self();
-		return Toolset_Field_Group_Post_Factory::get_instance()->create_field_group( $name, $title, $status );
+		return Toolset_Field_Group_Post_Factory::get_instance()->create_field_group( $name, $title, $status, $purpose );
 	}
 
 

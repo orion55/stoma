@@ -94,7 +94,7 @@ class Toolset_Relationship_Driver extends Toolset_Relationship_Driver_Base {
 		);
 
 		foreach ( $insert_results as $language_code => $insert_result ) {
-			foreach ( Toolset_Relationship_Role::all() as $role_name ) {
+			foreach ( Toolset_Relationship_Role::all_role_names() as $role_name ) {
 				$element_sources[ $role_name ][ $language_code ] = $insert_result['elements'][ $role_name ];
 			}
 		}
@@ -230,7 +230,7 @@ class Toolset_Relationship_Driver extends Toolset_Relationship_Driver_Base {
 			$affected_rows = $wpdb->insert(
 				Toolset_Relationship_Table_Name::associations(),
 				array(
-					'relationship' => $this->get_relationship_slug(),
+					'relationship_id' => $this->get_relationship_definition()->get_row_id(),
 					'parent_id' => $elements[ Toolset_Relationship_Role::PARENT ],
 					'child_id' => $elements[ Toolset_Relationship_Role::CHILD ],
 					'intermediary_id' => $elements[ Toolset_Relationship_Role::INTERMEDIARY ],

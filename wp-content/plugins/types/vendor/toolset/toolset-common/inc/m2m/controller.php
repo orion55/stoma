@@ -162,8 +162,6 @@ class Toolset_Relationship_Controller {
 	 */
 	private function add_hooks() {
 
-		add_filter( 'toolset_is_m2m_ready', '__return_true' );
-
 		/**
 		 * toolset_is_m2m_enabled
 		 *

@@ -96,9 +96,6 @@ if ( !defined('WPCF_AUTHOR' )){
 function wpcf_admin_init_hook()
 {
     wp_register_style('wpcf-css-embedded', WPCF_EMBEDDED_RES_RELPATH . '/css/basic.css', array(), WPCF_VERSION );
-
-    wp_enqueue_style('toolset-dashicons');
-
 }
 
 

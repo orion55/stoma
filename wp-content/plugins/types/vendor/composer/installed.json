@@ -217,22 +217,23 @@
     },
     {
         "name": "toolset/toolset-common",
-        "version": "2.5.3",
-        "version_normalized": "2.5.3.0",
+        "version": "2.5.5",
+        "version_normalized": "2.5.5.0",
         "source": {
             "type": "git",
             "url": "ssh://git@git.onthegosystems.com:10022/toolset/toolset-common.git",
-            "reference": "4e0c6e06de7e3db6a73a28e73e8c0d4b8432db6f"
+            "reference": "d4643145e2ab1e30c26b9f3ec1842d5f644e7c4e"
         },
         "require": {
             "php": ">=5.2.0"
         },
         "require-dev": {
+            "10up/wp_mock": "~0.2.0",
             "otgs/build-tools-ci": "~0.7.0",
             "otgs/unit-tests-framework": "~1.2.0",
             "phpunit/php-token-stream": "<2.0"
         },
-        "time": "2017-10-31T08:29:00+00:00",
+        "time": "2017-11-14T09:28:59+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {

@@ -24,7 +24,10 @@ class Toolset_User_Editors_Editor_Avada
 
 			// register medium slug
 			add_filter( 'fusion_builder_default_post_types', array( $this, 'support_medium' ) );
+			add_filter( 'fusion_builder_allowed_post_types', array( $this, 'support_medium' ) );
 		}
+
+		add_action( 'edit_form_after_editor', array( $this, 'register_assets_for_avada_compatibility' ) );
 
 		add_action( 'toolset_update_fusion_builder_post_meta', array( $this, 'update_fusion_builder_post_meta' ), 10, 2 );
 
@@ -63,6 +66,11 @@ class Toolset_User_Editors_Editor_Avada
 
 	public function register_assets_for_backend_editor() {
 		do_action( 'toolset_enqueue_scripts', array( 'toolset-user-editors-avada-script' ) );
+	}
+
+	public function register_assets_for_avada_compatibility() {
+		// The enqueueing of the style for Fusion Builder was moved outside the "CT editing" condition to also support
+		// compatibility to the native post/page editor when Fusion Builder is used there too.
 		do_action( 'toolset_enqueue_styles', array( 'toolset-user-editors-avada-editor-style' ) );
 	}
 

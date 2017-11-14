@@ -1,11 +1,11 @@
 <?php
 
 if( !defined('TOOLSET_VERSION') ){
-	define('TOOLSET_VERSION', '2.5.3');
+	define('TOOLSET_VERSION', '2.5.5');
 }
 
 if ( ! defined('TOOLSET_COMMON_VERSION' ) ) {
-    define( 'TOOLSET_COMMON_VERSION', '2.5.3' );
+    define( 'TOOLSET_COMMON_VERSION', '2.5.5' );
 }
 
 if ( ! defined('TOOLSET_COMMON_PATH' ) ) {
@@ -76,14 +76,16 @@ if ( ! function_exists( 'toolset_common_boostrap' ) ) {
 			define( 'TOOLSET_COMMON_FRONTEND_PROTOCOL', 'http' ); // DEPRECATED
 		}
 
-	    if( 0 != (int) $version_number ) {
+		// By preventing a re-definition we're easily allowing helper plugins like tcl-override to function.
+		// If nothing fancy is happening on the site, this will have zero impact.
+	    if( 0 !== (int) $version_number && ! defined( 'TOOLSET_COMMON_VERSION_NUMBER' ) ) {
 
 		    /**
 		     * If defined, this is an integer version number of the common library.
 		     *
 		     * It can be used for simple version comparison.
 		     *
-		     * @since m2m
+		     * @since 2.5.1
 		     */
 		    define( 'TOOLSET_COMMON_VERSION_NUMBER', $version_number );
 	    }

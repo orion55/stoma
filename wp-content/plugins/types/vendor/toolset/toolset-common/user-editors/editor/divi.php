@@ -57,7 +57,10 @@ class Toolset_User_Editors_Editor_Divi
 			return false;
 		}
 
-		if ( defined( 'ET_BUILDER_THEME' ) ) {
+		if (
+			defined( 'ET_BUILDER_THEME' )
+			|| defined( 'ET_BUILDER_PLUGIN_VERSION' )
+		) {
 			$this->name = __( 'Divi Builder', 'wpv-views' );
 			return true;
 		}

@@ -41,7 +41,7 @@ class Toolset_Association extends Toolset_Association_Base {
 
 		parent::__construct( $trid, $relationship_definition );
 
-		foreach( Toolset_Relationship_Role::parent_child() as $element_role ) {
+		foreach( Toolset_Relationship_Role::parent_child_role_names() as $element_role ) {
 			$element_source = toolset_getarr( $element_sources, $element_role, null );
 
 			if( is_array( $element_source ) && 1 === count( $element_source ) ) {

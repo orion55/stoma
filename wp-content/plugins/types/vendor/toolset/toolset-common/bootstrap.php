@@ -33,7 +33,7 @@ class Toolset_Common_Bootstrap {
 
     private static $instance;
 	private static $sections_loaded;
-	
+
 	public $assets_manager;
 	public $object_relationship;
 	public $menu;
@@ -82,9 +82,9 @@ class Toolset_Common_Bootstrap {
 		$this->register_res();
 		$this->register_libs();
 		$this->register_inc();
-		
+
 		add_filter( 'toolset_is_toolset_common_available', '__return_true' );
-		
+
 		add_action( 'switch_blog', array( $this, 'clear_settings_instance' ) );
 
         /**
@@ -130,7 +130,7 @@ class Toolset_Common_Bootstrap {
 		return in_array( $section_name, self::$sections_loaded );
 	}
 
-	
+
 	/**
 	 * Add a section name to the list of the loaded ones.
 	 *
@@ -207,7 +207,7 @@ class Toolset_Common_Bootstrap {
 		}
 
 	}
-	
+
 	public function register_res() {
 
 		if ( ! $this->is_section_loaded( self::TOOLSET_RESOURCES ) ) {
@@ -218,7 +218,7 @@ class Toolset_Common_Bootstrap {
 			$this->apply_filters_on_sections_loaded( 'toolset_register_assets_section' );
 		}
 	}
-	
+
 	public function register_libs() {
 
 		if ( ! $this->is_section_loaded( self::TOOLSET_LIBRARIES ) ) {
@@ -247,7 +247,7 @@ class Toolset_Common_Bootstrap {
 			$this->apply_filters_on_sections_loaded( 'toolset_register_library_section' );
 		}
 	}
-	
+
 	public function register_inc() {
 
 		if ( ! $this->is_section_loaded( self::TOOLSET_INCLUDES ) ) {
@@ -255,6 +255,10 @@ class Toolset_Common_Bootstrap {
 			$this->add_section_loaded( self::TOOLSET_INCLUDES );
 
 			$this->register_autoloaded_classes();
+
+			// Make sure we check for upgrades after the Toolset Common library is fully loaded.
+			$upgrade_controller = Toolset_Upgrade_Controller::get_instance();
+			$upgrade_controller->initialize();
 
 			// Manually load the more sensitive code.
 			if ( ! class_exists( 'Toolset_Settings', false ) ) {
@@ -310,16 +314,7 @@ class Toolset_Common_Bootstrap {
 				$this->relevanssi_compatibility = new Toolset_Relevanssi_Compatibility();
 			}
 
-			// If we're in admin mode, check for the need of database upgrade. It is safe to expect that
-			// an admin page will be visited during plugin upgrade, or shortly after (e.g. if wp-cli is used).
-			if( ( self::MODE_ADMIN == $this->get_request_mode() )
-				&& ! class_exists( 'Toolset_Upgrade', false ) )
-			{
-				require_once TOOLSET_COMMON_PATH . '/inc/toolset.upgrade.class.php';
-				Toolset_Upgrade::initialize();
-			}
-
-            if ( ! class_exists( 'Toolset_CssComponent' ) ) {
+            if ( ! class_exists( 'Toolset_CssComponent', false ) ) {
 				require_once( TOOLSET_COMMON_PATH . '/inc/toolset.css.component.class.php' );
 				Toolset_CssComponent::getInstance();
 			}
@@ -365,7 +360,7 @@ class Toolset_Common_Bootstrap {
 			$this->apply_filters_on_sections_loaded( 'toolset_register_include_section' );
 		}
 	}
-	
+
 	public function register_utils() {
 
 		if( ! $this->is_section_loaded( self::TOOLSET_AUTOLOADER ) ) {
@@ -425,7 +420,7 @@ class Toolset_Common_Bootstrap {
 			$this->apply_filters_on_sections_loaded( 'toolset_register_forms_section' );
 		}
 	}
-	
+
 	public function register_visual_editor() {
 
 		if ( ! $this->is_section_loaded( self::TOOLSET_VISUAL_EDITOR ) ) {
@@ -436,7 +431,7 @@ class Toolset_Common_Bootstrap {
 			$this->apply_filters_on_sections_loaded( 'toolset_register_visual_editor_section' );
 		}
 	}
-	
+
 	public function register_parser() {
 
 		if ( ! $this->is_section_loaded( self::TOOLSET_PARSER ) ) {

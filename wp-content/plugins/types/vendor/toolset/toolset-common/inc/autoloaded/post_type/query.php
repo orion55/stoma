@@ -29,6 +29,7 @@ class Toolset_Post_Type_Query {
 	const HAS_SPECIAL_PURPOSE = 'has_special_purpose';
 	const IS_EXCLUDED = 'is_excluded';
 	const IS_PUBLIC = 'is_public';
+	const IS_REGISTERED = 'is_registered';
 
 	const RETURN_TYPE = 'return';
 
@@ -91,6 +92,10 @@ class Toolset_Post_Type_Query {
 			self::IS_PUBLIC => array(
 				'callback' => array( $this, 'filter_bool_property' ),
 				'filter_args' => 'is_public'
+			),
+			self::IS_REGISTERED => array(
+				'callback' => array( $this, 'filter_bool_property' ),
+				'filter_args' => 'is_registered'
 			)
 		);
 
