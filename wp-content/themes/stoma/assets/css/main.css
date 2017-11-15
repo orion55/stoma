@@ -1109,6 +1109,25 @@ a.shares-button {
 	margin-bottom: 0;
 }
 
+.review__block a.review-button {
+	font-size: 24px;
+	font-weight: bold;
+	width: 367px;
+	height: 56px;
+	letter-spacing: .248276px;
+	text-transform: uppercase;
+	color: white;
+	border-radius: 7px;
+	background-color: #99cc32;
+	-webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, .5);
+	box-shadow: 0 2px 4px rgba(0, 0, 0, .5);
+}
+
+.review__block {
+	padding-bottom: 20px;
+	text-align: center;
+}
+
 .phone {
 	position: relative;
 	padding-bottom: 50px;

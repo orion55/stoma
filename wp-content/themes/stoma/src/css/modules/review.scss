@@ -70,9 +70,27 @@
       margin-bottom: 0;
     }
   }
-  & .review{
+  & .review {
     margin-bottom: 0;
   }
+}
+
+.review__block a.review-button {
+  background-color: $color-green;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  border-radius: 7px;
+  text-transform: uppercase;
+  color: white;
+  width: 367px;
+  height: 56px;
+  font-weight: bold;
+  font-size: 24px;
+  letter-spacing: 0.248276px;
+}
+
+.review__block {
+  text-align: center;
+  padding-bottom: 20px;
 }
 
 @media only screen and (min-device-width: 768px) and (max-width: 1199px) {

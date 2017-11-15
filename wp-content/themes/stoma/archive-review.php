@@ -11,6 +11,11 @@ get_header(); ?>
 
     <div id="primary" class="content-area">
         <main id="main" class="site-main review--archive">
+            <div class="review__block">
+                <a href="<?php echo home_url(); ?>/?page_id=1879"
+                   class="pure-button review-button">Добавить отзыв <i class="fa fa-arrow-right"
+                                                                       aria-hidden="true"></i></a>
+            </div>
 			<?php
 			if ( have_posts() ) : ?>
 				<?php
@@ -28,9 +33,13 @@ get_header(); ?>
 					}
 					get_template_part( 'template-parts/content', $format );
 				endwhile;
-
 				?>
 
+                <div class="review__block">
+                    <a href="<?php echo home_url(); ?>/?page_id=1879"
+                       class="pure-button review-button">Добавить отзыв <i class="fa fa-arrow-right"
+                                                                           aria-hidden="true"></i></a>
+                </div>
                 <div class="navigation-list">
 					<?php
 					if ( function_exists( 'wp_pagenavi' ) ) {

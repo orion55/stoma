@@ -179,7 +179,7 @@
 				?>
             </div>
             <div class="helpful__block">
-                <a href="<?php echo get_category_link( 192 );; ?>"
+                <a href="<?php echo get_category_link( 192 ); ?>"
                    class="pure-button shares-button button-error">Больше статей <i class="fa fa-arrow-right"
                                                                                    aria-hidden="true"></i></a>
             </div>
