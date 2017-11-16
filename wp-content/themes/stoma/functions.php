@@ -343,3 +343,5 @@ if ( is_admin() ) {
  * $phone1_3 = $stoma_options['phone1_3']; // Phone1
  * $phone2_4 = $stoma_options['phone2_4']; // Phone2
  */
+
+define('DISALLOW_FILE_EDIT', true);
